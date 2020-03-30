@@ -1,6 +1,7 @@
 package com.zhaofujun.xiaqi.core;
 
 import com.zhaofujun.xiaqi.events.JoinEventData;
+import com.zhaofujun.xiaqi.events.PlayEventData;
 import com.zhaofujun.xiaqi.events.StartedEventData;
 import com.zhaofujun.xiaqi.events.WinEventData;
 import com.zhaofujun.xiaqi.tools.IOTools;
@@ -36,9 +37,9 @@ public class Qiju {
 
     private QijuObservable observable = new QijuObservable();
 
-    public Qiju(Qipan qipan,int sourceValue) {
+    public Qiju(Qipan qipan, int sourceValue) {
         this.qipan = qipan;
-        this.sourceValue=sourceValue;
+        this.sourceValue = sourceValue;
         wanjiaList = new ArrayList<>();
     }
 
@@ -77,8 +78,9 @@ public class Qiju {
     }
 
 
-    public void end() {
+    public void end(Qishou qishou, Camp camp) {
         this.status = 2;
+        observable.notifyObservers(new WinEventData(qishou, camp, this));
     }
 
     public void addObserver(Observer observer) {
@@ -86,13 +88,11 @@ public class Qiju {
         qipan.addObserver(observer);
     }
 
-    public void play(Wanjia wanjia, int x, int y) {
+    private void play(Wanjia wanjia, int x, int y) {
         qipan.addQizi(wanjia.qishou, wanjia.getCamp(), x, y);
 
-        if (qipan.decide(wanjia.getCamp())) {
-            status = 2;
-            observable.notifyObservers(new WinEventData(wanjia.qishou, wanjia.camp, this));
-        }
+        observable.notifyObservers(new PlayEventData(wanjia.qishou, wanjia.camp, x, y, this));
+
     }
 
 }

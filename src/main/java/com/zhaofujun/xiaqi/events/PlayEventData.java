@@ -1,9 +1,6 @@
 package com.zhaofujun.xiaqi.events;
 
-import com.zhaofujun.xiaqi.core.Camp;
-import com.zhaofujun.xiaqi.core.EventData;
-import com.zhaofujun.xiaqi.core.Qipan;
-import com.zhaofujun.xiaqi.core.Qishou;
+import com.zhaofujun.xiaqi.core.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -14,7 +11,7 @@ public class PlayEventData extends EventData {
     private Camp camp;
     private int x;
     private int y;
-    private Qipan qipan;
+    private Qiju qiju;
 
 
     @Override

@@ -1,6 +1,7 @@
 package com.zhaofujun.xiaqi.core;
 
 
+import com.zhaofujun.xiaqi.events.PlayEventData;
 import com.zhaofujun.xiaqi.events.WinEventData;
 
 import java.util.Observable;
@@ -23,7 +24,14 @@ public class Caipan extends Ren implements Observer {
             EventData eventData = (EventData) arg;
             System.out.println(getName() + "现场为您解说:" + eventData.toMessageString());
 
+            if (PlayEventData.class.isInstance(eventData)) {
+                PlayEventData playEventData = (PlayEventData) arg;
+                if (playEventData.getQiju().getQipan().decide(playEventData.getCamp())) {
+                    //由裁判判定输赢
+                    playEventData.getQiju().end(playEventData.getQishou(), playEventData.getCamp());
+                }
 
+            }
             if (WinEventData.class.isInstance(eventData)) {
                 //为棋手分配积分
                 WinEventData winEventData = (WinEventData) arg;

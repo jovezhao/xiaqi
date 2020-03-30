@@ -68,7 +68,6 @@ public abstract class Qipan implements Guize {
     public void addQizi(Qishou qishou, Camp camp, int x, int y) {
         panmian.getQiziList().add(new Qizi(camp, x, y));
 
-        observable.notifyObservers(new PlayEventData(qishou, camp, x, y, this));
     }
 }
 

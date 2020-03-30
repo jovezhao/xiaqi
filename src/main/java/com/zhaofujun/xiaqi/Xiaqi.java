@@ -12,7 +12,7 @@ public class Xiaqi {
         Qipan qipan = new Wuziqi();
         Qiju qiju = new Qiju(qipan, 20);
 
-        caipanA.narrate(qiju);
+        caipanA.narrate(qiju);//解说
 
         qiju.join(qishouA, Camp.Black);
         qiju.join(qishouB, Camp.White);
