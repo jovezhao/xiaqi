@@ -8,11 +8,11 @@ public class IOTools {
         System.out.println(String.format("系统：等待%s落子:", name));
         Scanner sc = new Scanner(System.in);
         String nextLine = sc.nextLine();
-        if (Pattern.matches("\\d,\\d", nextLine)) {
+        if (Pattern.matches("^\\d+,\\d+$", nextLine)) {
             String[] split = nextLine.split(",");
             return new Zuobiao(Integer.parseInt(split[0]), Integer.parseInt(split[1]));
         } else {
-            return null;
+            return getZuobiao(name);
         }
     }
 }

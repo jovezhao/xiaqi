@@ -69,7 +69,6 @@ public class Qiju {
         while (status == 1) {
             Wanjia wanjia = wanjiaList.get(stepCount % 2);
             Zuobiao zuobiao = IOTools.getZuobiao(wanjia.getQishou().getName());
-            if (zuobiao == null) zuobiao = IOTools.getZuobiao(wanjia.getQishou().getName());
             play(wanjia, zuobiao.getX(), zuobiao.getY());
             stepCount++;
 
