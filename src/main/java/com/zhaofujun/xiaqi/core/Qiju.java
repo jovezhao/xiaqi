@@ -6,6 +6,7 @@ import com.zhaofujun.xiaqi.events.StartedEventData;
 import com.zhaofujun.xiaqi.events.WinEventData;
 import com.zhaofujun.xiaqi.tools.IOTools;
 import com.zhaofujun.xiaqi.tools.Zuobiao;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.*;
@@ -13,7 +14,9 @@ import java.util.*;
 @Getter
 public class Qiju {
 
+    @AllArgsConstructor
     class QijuObservable extends Observable {
+        private Qiju source;
         @Override
         public void notifyObservers(Object arg) {
             setChanged();
@@ -35,7 +38,7 @@ public class Qiju {
     }
 
 
-    private QijuObservable observable = new QijuObservable();
+    private QijuObservable observable = new QijuObservable(this);
 
     public Qiju(Qipan qipan, int sourceValue) {
         this.qipan = qipan;

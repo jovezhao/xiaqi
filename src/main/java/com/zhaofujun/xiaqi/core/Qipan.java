@@ -1,6 +1,7 @@
 package com.zhaofujun.xiaqi.core;
 
 import com.zhaofujun.xiaqi.events.PlayEventData;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.*;
@@ -35,7 +36,11 @@ public abstract class Qipan implements Guize {
         }
     }
 
+    @AllArgsConstructor
+    @Getter
     public class QipanObservable extends Observable {
+        private Qipan source;
+
         @Override
         public void notifyObservers(Object arg) {
             setChanged();
@@ -51,7 +56,7 @@ public abstract class Qipan implements Guize {
         }
     }
 
-    private QipanObservable observable = new QipanObservable();
+    private QipanObservable observable = new QipanObservable(this);
 
     private Panmian panmian = new Panmian();
 
