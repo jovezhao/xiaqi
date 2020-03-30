@@ -7,9 +7,9 @@ public class Qishou extends Ren {
     private int source;
 
 
-    public Qishou(String name) {
+    public Qishou(String name,int source) {
         super(name);
-        this.source = 0;
+        this.source = source;
     }
 
     public void addSource(int value) {

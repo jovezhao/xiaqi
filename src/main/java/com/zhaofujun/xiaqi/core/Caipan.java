@@ -24,8 +24,16 @@ public class Caipan extends Ren implements Observer {
             System.out.println(getName() + "现场为您解说:" + eventData.toMessageString());
 
 
-            if(WinEventData.class.isInstance(eventData)){
+            if (WinEventData.class.isInstance(eventData)) {
                 //为棋手分配积分
+                WinEventData winEventData = (WinEventData) arg;
+                Qishou qishouW = winEventData.getQishou();
+                Qishou qishouL = winEventData.getQiju().getWanjiaList().stream().filter(p -> !p.getCamp().equals(winEventData.getCamp())).map(p -> p.getQishou()).findFirst().orElse(null);
+
+                qishouL.subtractSource(winEventData.getQiju().getSourceValue());
+                qishouW.addSource(winEventData.getQiju().getSourceValue());
+
+                System.out.println(String.format("当前积分情况：%s%d分,%s%d分", qishouL.getName(), qishouL.getSource(), qishouW.getName(), qishouW.getSource()));
 
             }
         } else {

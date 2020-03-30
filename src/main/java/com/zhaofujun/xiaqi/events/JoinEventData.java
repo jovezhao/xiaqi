@@ -19,6 +19,6 @@ public class JoinEventData extends EventData {
 
     @Override
     public String toMessageString() {
-        return String.format("%s已经就位，他的阵营是%s方",qishou.getName(),camp);
+        return String.format("%s已经就位，他的阵营是%s方，他当前的积分是%d",qishou.getName(),camp,qishou.getSource());
     }
 }

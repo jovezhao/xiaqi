@@ -12,7 +12,7 @@ import java.util.*;
 @Getter
 public class Qiju {
 
-    public class QijuObservable extends Observable {
+    class QijuObservable extends Observable {
         @Override
         public void notifyObservers(Object arg) {
             setChanged();
@@ -34,13 +34,15 @@ public class Qiju {
     }
 
 
-    QijuObservable observable = new QijuObservable();
+    private QijuObservable observable = new QijuObservable();
 
-    public Qiju(Qipan qipan) {
+    public Qiju(Qipan qipan,int sourceValue) {
         this.qipan = qipan;
+        this.sourceValue=sourceValue;
         wanjiaList = new ArrayList<>();
     }
 
+    private int sourceValue;
     private List<Wanjia> wanjiaList;
     private Qipan qipan;
     // 0 未开始  1 进行中 2 结束
@@ -55,7 +57,7 @@ public class Qiju {
         if (wanjiaList.stream().filter(p -> p.getCamp().equals(camp)).count() > 0)
             throw new RuntimeException("座位已经有人了");
         wanjiaList.add(new Wanjia(qishou, camp));
-        observable.notifyObservers(new JoinEventData(qishou, camp,this));
+        observable.notifyObservers(new JoinEventData(qishou, camp, this));
     }
 
     public void start() {
